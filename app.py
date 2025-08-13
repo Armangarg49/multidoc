@@ -1,7 +1,7 @@
 #app.py
 
 import streamlit as st
-from utlis import load_and_process_docs, answer_query  # your utils functions
+from utilsimport load_and_process_docs, answer_query  # your utils functions
 st.write("Hello, Streamlit app is running!")
 st.title("Multi-Document RAG Chatbot")
 

@@ -1,6 +1,6 @@
 # main.py
 
-from utlis import (
+from utilsimport (
     load_document,
     chunk_docs,
     embed_chunks,
