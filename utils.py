@@ -31,6 +31,8 @@ splitter = RecursiveCharacterTextSplitter(
     separators=["\n\n", "\n", " ", ""]
 )
 
+
+
 def chunk_docs(docs):
     texts = [doc.page_content for doc in docs]
     all_chunks = []
@@ -57,3 +59,14 @@ def load_vectorstore(index_path="faiss_index", embeddings_model=None):
     if embeddings_model is None:
         raise ValueError("Embeddings model required to load vectorstore.")
     return FAISS.load_local(index_path, embeddings_model)
+def load_and_process_docs(file_paths):
+    all_docs = []
+    for file in file_paths:
+        docs = load_document(file)
+        all_docs.extend(docs)
+
+    chunks = chunk_docs(all_docs)
+    embeddings_model = OpenAIEmbeddings()
+    vectorstore = create_vectorstore(chunks, embeddings_model)
+    return vectorstore    
+    
